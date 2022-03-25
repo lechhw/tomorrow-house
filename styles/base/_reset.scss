@@ -1,14 +1,14 @@
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: $font-main;
   box-sizing: border-box;
   margin: 0;
 }
 html {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: $font-main;
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: $font-main;
 }
 
 a {
@@ -20,7 +20,7 @@ input,
 select,
 textarea,
 button {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: $font-main;
   border: 0;
   background: none;
   appearance: none;

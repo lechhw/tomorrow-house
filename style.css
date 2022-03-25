@@ -372,15 +372,15 @@ template {
   display: none; }
 
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   box-sizing: border-box;
   margin: 0; }
 
 html {
-  font-family: 'Noto Sans KR', sans-serif; }
+  font-family: "Noto Sans KR", sans-serif; }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif; }
+  font-family: "Noto Sans KR", sans-serif; }
 
 a {
   text-decoration: none;
@@ -390,7 +390,7 @@ input,
 select,
 textarea,
 button {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   border: 0;
   background: none;
   appearance: none; }
