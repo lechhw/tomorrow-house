@@ -1,8 +1,10 @@
 @import './constants/typography';
 @import './constants/color';
-
+@import './constants/grids';
 @import './base/fonts';
 @import './base/normalize';
 @import './base/reset';
 
 @import './mixins/text-style';
+
+@import './layouts/grids';

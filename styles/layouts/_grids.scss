@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  padding: 0 $sm-margin;
+  margin: 0 auto;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  [class^='col-'] {
+    // class 중에서 'col-' 로 시작하는 모든것 선택
+    padding: 0 $gutter / 2;
+  }
+
+  @for $i from 1 through $sm-columns {
+    .col-sm-#{$i} {
+      width: percentage($i / $sm-columns);
+    }
+  }
+
+  @media screen and (min-width: $md-breakpoint) {
+    max-width: $md-max-container;
+    padding: 0 $md-margin;
+
+    @for $i from 1 through $md-columns {
+      .col-md-#{$i} {
+        width: percentage($i / $md-columns);
+      }
+    }
+  }
+
+  @media screen and(min-width: $lg-breakpoint) {
+    max-width: $lg-max-container;
+
+    @for $i from 1 through $lg-columns {
+      .col-lg-#{$i} {
+        width: ($lg-unit + $gutter) * $i;
+      }
+    }
+  }
+}
