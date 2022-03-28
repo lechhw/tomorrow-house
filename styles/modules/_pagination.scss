@@ -1,0 +1,56 @@
+%page-base {
+  @include inline-flexbox;
+  @include text-style(16, $primary);
+  font-weight: 700;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: $white;
+}
+
+.pagination {
+  @include flexbox;
+  .page-control {
+    @extend %page-base;
+    border: 1px solid $border;
+
+    &.page-prev {
+      margin-right: 24px;
+      i {
+        display: block;
+        transform: rotate(90deg);
+      }
+    }
+
+    &.page-next {
+      margin-left: 24px;
+      i {
+        display: block;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .page-list {
+    @include flexbox;
+  }
+
+  .page-item {
+    @extend %page-base;
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: $blue;
+    }
+
+    &.is-active {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+}
