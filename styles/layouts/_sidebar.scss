@@ -7,7 +7,8 @@
   overflow-y: auto;
   padding: 32px 20px;
   background-color: $white;
-  z-index: $sidebar-levlel;
+  z-index: $sidebar-level;
+  overscroll-behavior: contain;
 
   &-header {
     padding: 0 12px;
