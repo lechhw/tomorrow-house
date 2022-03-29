@@ -1,0 +1,74 @@
+.my-menu {
+  position: relative;
+
+  &-button {
+    width: 32px;
+    height: 32px;
+    border: 3px solid $white;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: border-color 200ms ease-in-out;
+
+    &:hover,
+    &.is-active {
+      border-color: $blue;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-content {
+    @include pos-center-x;
+    top: 44px + 8px;
+    border-radius: 4px;
+    box-shadow: $dropdown-box-shadow;
+
+    &::before,
+    &::after {
+      @include pos-center-x;
+      top: -24px;
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 12px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 12px solid $border;
+      border-left: 10px solid transparent;
+    }
+
+    &::after {
+      top: -22px;
+      border-bottom-color: $white;
+    }
+  }
+
+  &-list {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid $border;
+    border-radius: 4px;
+    background-color: $white;
+  }
+
+  &-item {
+    a,
+    button {
+      @include flexbox(start);
+      @include text-style(16, $primary);
+      width: 100%;
+      height: 44px;
+      padding: 0 8px;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: $background;
+      }
+    }
+  }
+}
