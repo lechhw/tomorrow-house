@@ -1,13 +1,14 @@
 .drawer-menu {
-  $drawer-menu-height: 36px;
-  $padding-bottom: 8px;
+  $drawer-menu-item-height: 36px;
+  $drawer-menu-list-padding: 20px;
   $community-length: 8;
   $store-length: 10;
   $expert-length: 2;
 
   @function _drawer-menu-max-height($length) {
-    @return $drawer-menu-height * $length + $padding-bottom;
+    @return $drawer-menu-item-height * $length + $drawer-menu-list-padding;
   }
+
   &.is-active {
     .drawer-menu-button {
       color: $blue;
@@ -29,6 +30,10 @@
       .drawer-menu-content {
         max-height: _drawer-menu-max-height($expert-length);
       }
+    }
+
+    .drawer-menu-content {
+      padding-bottom: $drawer-menu-list-padding;
     }
 
     .drawer-menu-button {
@@ -83,7 +88,7 @@
       @include flexbox(start);
       @include text-style(14, $primary);
       width: 100%;
-      height: $drawer-menu-height;
+      height: $drawer-menu-item-height;
       padding: 0 12px;
       font-weight: 700;
     }
