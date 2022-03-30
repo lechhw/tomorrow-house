@@ -1,0 +1,12 @@
+.product-carousel {
+  &-slider {
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  &-thumbnail {
+    display: none;
+  }
+}
