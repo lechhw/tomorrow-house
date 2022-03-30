@@ -1,0 +1,32 @@
+.order-form {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  .order-inputs {
+    margin-bottom: 20px;
+
+    .select-group:first-child {
+      margin-bottom: 8px;
+    }
+  }
+
+  .order-summary {
+    @include flexbox(between);
+    margin-bottom: 20px;
+
+    dt {
+      @include text-style(13, $dark);
+      font-weight: 700;
+    }
+  }
+  .button-group {
+    @include flexbox(between);
+    button {
+      width: 50%;
+
+      &:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+}
