@@ -1,12 +1,131 @@
 .product-carousel {
+  position: relative;
+
   &-slider {
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
+    margin-left: -$grid-margin;
+    margin-right: -$grid-margin;
+    .slider-item {
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
     }
   }
+
   &-thumbnail {
-    display: none;
+    @include pos-center-x;
+    bottom: 16px;
+
+    .thumbnail-list {
+      @include flexbox;
+    }
+
+    .thumbnail-item {
+      @include flexbox;
+      margin-right: 8px;
+
+      &.tns-nav-active {
+        button {
+          background-color: $white;
+          transform: scale(1.2);
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      button {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba($white, 0.7);
+
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include responsive(T) {
+    padding-right: 30px;
+
+    &-slider {
+      margin: 0 0 8px 0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    &-thumbnail {
+      position: static;
+      transform: none;
+
+      .thumbnail-list {
+        justify-content: start;
+      }
+
+      .thumbnail-item {
+        &.tns-nav-active {
+          button {
+            transform: none;
+            border: 2px solid $blue;
+          }
+        }
+
+        button {
+          @include flexbox;
+          width: 56px;
+          height: 56px;
+          border-radius: 4px;
+          overflow: hidden;
+
+          img {
+            display: block;
+            width: 56px;
+            height: 56px;
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive(D) {
+    @include flexbox(end, start);
+    flex-direction: row-reverse;
+    padding-right: 0;
+
+    &-slider {
+      width: 500px;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    &-thumbnail {
+      margin-right: 8px;
+      .thumbnail-list {
+        flex-direction: column;
+      }
+
+      .thumbnail-item {
+        margin-right: 0;
+        margin-bottom: 8px;
+
+        button {
+          width: 75px;
+          height: 75px;
+
+          img {
+            width: 75px;
+            height: 75px;
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }
