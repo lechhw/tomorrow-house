@@ -1,0 +1,121 @@
+.review-card {
+  padding: 20px 0;
+
+  &-header {
+    @include flexbox(start);
+    margin-bottom: 20px;
+
+    .avatar-24 {
+      margin-right: 8px;
+
+      &:active {
+        opacity: 0.4;
+      }
+    }
+
+    .info {
+      .user-name {
+        @include text-style(13, $primary);
+        font-weight: 400;
+
+        &:active {
+          opacity: 0.4;
+        }
+      }
+
+      .detail {
+        @include flexbox(start);
+
+        .star-rating-13 {
+          margin-right: 4px;
+        }
+
+        .misc {
+          @include text-style(12, $secondary);
+          font-weight: 400;
+
+          span {
+            &::before {
+              content: '﹒';
+              margin: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-body {
+    margin-bottom: 20px;
+
+    .review-image {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    p {
+      @include text-style(13, $primary);
+    }
+  }
+
+  &-footer {
+    @include flexbox(start);
+
+    button {
+      width: 120px;
+      margin-right: 8px;
+
+      i {
+        font-size: 20px;
+        color: $white;
+        margin-left: -4px;
+        margin-right: 4px;
+      }
+    }
+
+    p {
+      @include text-style(12, $primary);
+      font-weight: 400;
+
+      strong {
+        font-weight: 400;
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  @include responsive(T) {
+    padding: 40px 0 40px 32px;
+    border-bottom: 0;
+
+    &-header {
+      margin-left: -32px;
+
+      .avatar-24:hover,
+      .user-name:hover {
+        opacity: 0.4;
+      }
+    }
+
+    &-body {
+      .review-image {
+        width: 112px;
+        height: 112px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
