@@ -1,0 +1,135 @@
+.review-scoreboard {
+  @include flexbox(center);
+  width: 100%;
+  height: 152px;
+  border-radius: 4px;
+  background-color: $background;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 1px;
+    height: 96px;
+    order: 2;
+    background-color: $border;
+  }
+
+  .score-summary,
+  .score-detail {
+    width: 50%;
+  }
+
+  .score-summary {
+    @include flexbox;
+    flex-direction: column;
+    order: 1;
+
+    .average-score {
+      @include text-style(24, $dark);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .star-rating {
+      @include star-rating(20px);
+    }
+  }
+
+  .score-detail {
+    order: 3;
+    text-align: center;
+
+    .score-stats-list {
+      display: inline-block;
+    }
+
+    .score-stats-item {
+      @include flexbox(start);
+      @include text-style(12, $secondary);
+      font-weight: 400;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.is-active {
+        dt,
+        .count {
+          color: $blue;
+          font-weight: 700;
+        }
+      }
+
+      dt {
+        margin-right: 4px;
+      }
+
+      dd {
+        @include flexbox;
+
+        .bar-graph {
+          position: relative;
+          width: 70px;
+          height: 5px;
+          margin-right: 4px;
+          border-radius: 100px;
+          background-color: $border;
+          overflow: hidden;
+
+          .active-bar {
+            height: 5px;
+            border-radius: 100px;
+            background-color: $blue;
+          }
+        }
+
+        .count {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  @include responsive(T) {
+    justify-content: space-around;
+    padding: 0 72px;
+
+    &::after {
+      height: 72px;
+    }
+
+    .score-summary,
+    .score-detail {
+      width: auto;
+    }
+
+    .score-summary {
+      flex-direction: row-reverse;
+
+      .average-score {
+        margin-bottom: 0;
+        margin-left: 16px;
+      }
+
+      .star-rating {
+        font-size: 24px;
+      }
+    }
+
+    .score-detail {
+      .score-stats-item {
+        dt {
+          margin-right: 8px;
+        }
+
+        dd {
+          .bar-graph {
+            width: 180px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
