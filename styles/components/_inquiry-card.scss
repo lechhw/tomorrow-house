@@ -51,7 +51,14 @@
       }
 
       p {
+        @include flexbox(start);
         color: $primary;
+
+        i {
+          font-size: 16px;
+          color: $tertiary;
+          margin-right: 8px;
+        }
       }
     }
   }
