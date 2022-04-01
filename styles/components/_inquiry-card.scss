@@ -10,6 +10,10 @@
       margin-bottom: 8px;
 
       dd {
+        &.is-answered {
+          color: $blue;
+        }
+
         &::after {
           content: '|';
           margin: 0 2px;
@@ -36,7 +40,8 @@
   }
 
   &-body {
-    .question-content {
+    .question-content,
+    .answer-content {
       @include text-style(13);
       font-weight: 400;
       position: relative;
@@ -61,13 +66,43 @@
         }
       }
     }
+
+    .answer-content {
+      margin-top: 12px;
+
+      .seller {
+        @include flexbox(start);
+        margin-bottom: 4px;
+        strong {
+          @include text-style(13, $dark);
+          margin-right: 4px;
+        }
+
+        time {
+          @include text-style(12, $tertiary);
+        }
+      }
+    }
   }
 
   @include responsive(T) {
     &-body {
-      .question-content {
+      .question-content,
+      .answer-content {
         @include text-style(16);
         padding-left: 24px;
+      }
+
+      .answer-content {
+        margin-top: 16px;
+
+        .seller {
+          margin-bottom: 0;
+
+          strong {
+            @include text-style(16);
+          }
+        }
       }
     }
   }
