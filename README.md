@@ -102,3 +102,25 @@
 </section>
 <div class="product-section-divider sm-only" aria-hidden></div>
 ```
+
+### 4. Product-Inquiry
+
+- 문의가 0개일 경우
+
+```html
+<section class="product-section product-inquiry is-open" id="product-inquiry">
+  <header class="product-section-header">
+    <h1 class="title">문의</h1>
+    <strong class="badge" aria-label="0개의 문의">0</strong>
+    <a class="text-button" href="#">문의하기</a>
+    <button class="icon-button sm-only" type="button" aria-label="더보기">
+      <i class="ic-chevron" aria-hidden></i>
+    </button>
+  </header>
+
+  <div class="product-section-content">
+    <p class="inquiry-empty">문의 내역이 없습니다.</p>
+  </div>
+</section>
+<div class="product-section-divider sm-only" aria-hidden></div>
+```
