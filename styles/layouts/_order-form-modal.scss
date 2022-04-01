@@ -3,12 +3,15 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
   z-index: $order-form-modal-level;
   display: none;
   background-color: $white;
   padding-top: 16px;
   border-radius: 12px 12px 0 0;
   box-shadow: $dropdown-box-shadow;
+  overscroll-behavior: contain;
 
   &.is-open {
     display: block;
@@ -21,12 +24,20 @@
   }
 
   .order-checkout,
-  order-summary {
+  .order-summary {
     margin-bottom: 16px;
   }
 
+  .order-summary {
+    margin-bottom: 48px + (4px * 2) + 16px;
+  }
   .button-group {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 4px;
+    background-color: $white;
   }
 
   @include responsive(T) {
