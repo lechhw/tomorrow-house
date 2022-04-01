@@ -1,0 +1,45 @@
+.order-form-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: $order-form-modal-level;
+  display: none;
+  background-color: $white;
+  padding-top: 16px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: $dropdown-box-shadow;
+
+  &.is-open {
+    display: block;
+    animation-name: open-modal;
+    animation-duration: 300ms;
+  }
+
+  .order-inputs {
+    margin-bottom: 8px;
+  }
+
+  .order-checkout,
+  order-summary {
+    margin-bottom: 16px;
+  }
+
+  .button-group {
+    padding: 4px;
+  }
+
+  @include responsive(T) {
+    padding-top: 32px;
+  }
+
+  @keyframes open-modal {
+    0% {
+      transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
