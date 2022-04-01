@@ -108,7 +108,11 @@
 - 문의가 0개일 경우
 
 ```html
-<section class="product-section product-inquiry is-open" id="product-inquiry">
+<section
+  class="product-section product-inquiry is-open"
+  role="tabpanel"
+  id="product-inquiry"
+>
   <header class="product-section-header">
     <h1 class="title">문의</h1>
     <strong class="badge" aria-label="0개의 문의">0</strong>
