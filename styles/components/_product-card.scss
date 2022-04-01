@@ -22,12 +22,15 @@
 
   &-brand {
     @include text-style(12, $secondary);
+    display: block;
+    margin-bottom: 4px;
   }
 
   &-title {
+    @include line-clamp(2);
     @include text-style(13, $dark);
-
     font-weight: 400;
+    line-height: 16px;
   }
 
   &-price {
