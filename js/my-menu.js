@@ -5,7 +5,6 @@ function closeMyMenuOnClickingOutSide(e) {
   if (!myMenu.contains(e.target)) {
     myMenu.classList.remove('is-active')
     window.removeEventListener('click', closeMyMenuOnClickingOutSide)
-    console.log('click')
   }
 }
 window.addEventListener('click', closeMyMenuOnClickingOutSide)
