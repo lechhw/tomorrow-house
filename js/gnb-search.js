@@ -7,10 +7,16 @@ const deleteAllButton = gnbSearchHistory.querySelector(
 )
 const searchHistoryList = gnbSearchHistory.querySelector('ol')
 
-function closeGnbSearchHistory(e) {
+const deleteButtonList = searchHistoryList.querySelectorAll('.delete-button')
+
+function closeGnbSearchHistory() {
+  gnbSearchHistory.classList.remove('is-active')
+  window.removeEventListener('click', closeGnbSearchHistoryOutside)
+}
+
+function closeGnbSearchHistoryOutside(e) {
   if (!gnbSearch.contains(e.target)) {
-    gnbSearchHistory.classList.remove('is-active')
-    window.removeEventListener('click', closeGnbSearchHistory)
+    closeGnbSearchHistory()
   }
 }
 
@@ -20,14 +26,28 @@ function openGnbSearchHistory() {
   }
 
   if (!gnbSearchHistory.classList.contains('is-active')) {
-    window.addEventListener('click', closeGnbSearchHistory)
+    window.addEventListener('click', closeGnbSearchHistoryOutside)
   }
   gnbSearchHistory.classList.add('is-active')
 }
-gnbSearchInput.addEventListener('focus', openGnbSearchHistory)
 
 function deleteAllHistoryItems() {
   searchHistoryList.innerHTML = ''
-  gnbSearchHistory.classList.remove('is-active')
+  closeGnbSearchHistory()
 }
+
+function deleteHistoryItem(e) {
+  e.stopPropagation() // 이벤트 전파를 막아주는...
+  const historyItem = this.parentNode
+  searchHistoryList.removeChild(historyItem)
+
+  if (searchHistoryList.children.length == 0) {
+    closeGnbSearchHistory()
+  }
+}
+
+deleteButtonList.forEach(function (button) {
+  button.addEventListener('click', deleteHistoryItem)
+})
 deleteAllButton.addEventListener('click', deleteAllHistoryItems)
+gnbSearchInput.addEventListener('focus', openGnbSearchHistory)
