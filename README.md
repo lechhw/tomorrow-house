@@ -1,130 +1,245 @@
 # 내일의 집
 
-### 1. GNB
+- 결과물 주소 👉 https://lechhw.github.io/tomorrow-house
 
-- 로그인을 하지 않은 경우
+## 사용 기술
 
-```html
-<div class="button-group">
-  <button class="gnb-icon-button is-search lg-hidden" type="button">
-    <i class="ic-search" aria-label="검색창 열기 버튼"></i>
-  </button>
-  <a class="gnb-icon-button is-cart" href="#">
-    <i class="ic-cart" aria-label="장바구니 페이지로 이동 버튼"></i>
-  </a>
+<br/>
 
-  <div class="gnb-auth sm-hidden">
-    <a href="#">로그인</a>
-    <a href="#">회원가입</a>
-  </div>
-</div>
+- HTML
+- Sass(SCSS)
+- Vanilla Javascript
+
+<br/>
+
+## 프로젝트 구현과정 소개
+
+<br/>
+
+- 유지보수에 용이하게끔 Semantic 하게 html 구조를 설계하고 스크린리더 환경에서도 웹 접근성과 사용성을 위해 필요한 요소에는 aria-lable 작성을 하여 웹접근성을 높이게끔 하였습니다.
+
+<br/>
+
+- CSS 의 전처리기인 Sass(SCSS) 를 사용하여 유지보수와 재사용 가능한 코드를 작성하는 법을 배웠습니다.
+
+<br/>
+
+- 부트스트랩의 그리드시스템을 프로젝트시안에 맞게 SCSS 로 커스터마이징하여 반응형 레이아웃을 구현하는 법을 배웠습니다.
+
+```Scss
+// mobile  (<768px) --------------------------------
+// * # of columns ---------------- 4
+// * gutter ---------------------- 20px
+// * margin ---------------------- 5px
+// * container-size -------------- 100% - (5px * 2)
+
+// tablet  (>=768px) ---------------------------------
+// * # of columns ---------------- 12
+// * gutter ---------------------- 20px
+// * margin ---------------------- 30px
+// * container-size -------------- 100% - (30px * 2)
+// * max-container-size ---------- 960px
+
+// desktop  (>=1200px) -------------------------------
+// * # of columns ---------------- 12
+// unit -------------------------- 75px
+// * gutter ---------------------- 20px
+// * container-size -------------- 1140px
+// * max-container-size ---------- 1140px
+
+$gutter: 20px;
+
+$sm-columns: 4;
+$sm-margin: 5px;
+
+$md-breakpoint: 768px;
+$md-columns: 12;
+$md-margin: 30px;
+$md-max-container: 960px + ($md-margin * 2);
+
+$lg-breakpoint: 1200px;
+$lg-columns: 12;
+$lg-unit: 75px;
+$lg-max-container: ($lg-unit + $gutter) * $lg-columns;
+
+$grid-margin: $sm-margin + ($gutter / 2);
+
+
+.container {
+  width: 100%;
+  padding: 0 $sm-margin;
+  margin: 0 auto;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  [class^='col-'] {
+    // class 중에서 'col-' 로 시작하는 모든것 선택
+    padding: 0 $gutter / 2;
+  }
+
+  @for $i from 1 through $sm-columns {
+    .col-sm-#{$i} {
+      width: percentage($i / $sm-columns);
+    }
+  }
+
+  @media screen and (min-width: $md-breakpoint) {
+    max-width: $md-max-container;
+    padding: 0 $md-margin;
+
+    @for $i from 1 through $md-columns {
+      .col-md-#{$i} {
+        width: percentage($i / $md-columns);
+      }
+    }
+  }
+
+  @media screen and(min-width: $lg-breakpoint) {
+    max-width: $lg-max-container;
+    padding: 0;
+
+    @for $i from 1 through $lg-columns {
+      .col-lg-#{$i} {
+        width: ($lg-unit + $gutter) * $i;
+      }
+    }
+  }
+}
 ```
 
-- 로그인을 한 경우
+<br/>
 
-```html
-<div class="button-group">
-  <button class="gnb-icon-button is-search lg-hidden" type="button">
-    <i class="ic-search" aria-label="검색창 열기 버튼"></i>
-  </button>
+- 사이트에서 자주 사용하는 요소들을 css module 로 따로 작성 하여 코드의 재사용성을 높이는 법을 배웠습니다.
 
-  <a class="gnb-icon-button sm-hidden" href="#">
-    <i class="ic-bookmark" aria-label="스크랩북 페이지로 이동 버튼"></i>
-  </a>
+<img width="176" alt="스크린샷 2022-04-05 오후 4 10 07" src="https://user-images.githubusercontent.com/99241230/161710479-b2e7f167-03ab-495a-b1a3-602033898d01.png">
 
-  <a class="gnb-icon-button sm-hidden" href="#">
-    <i class="ic-bell" aria-label="내 소식 페이지로 이동 버튼"></i>
-  </a>
+<br/>
 
-  <a class="gnb-icon-button is-cart" href="#">
-    <i class="ic-cart" aria-label="장바구니 페이지로 이동 버튼"></i>
-    <strong class="badge">5</strong>
-  </a>
+- Dom Event Handler + Javascript 사용하여 웹사이트 안에 다양한 이벤트를
+  구현하는 법을 배웠습니다.
 
-  <button
-    class="gnb-avatar-button sm-hidden"
-    type="button"
-    aria-label="마이메뉴 버튼"
-  >
-    <div class="avatar-32">
-      <img src="./assets/images/img-user-03.png" alt="유저 프로필 이미지" />
-    </div>
-  </button>
-</div>
-```
+<br/>
 
-### 2. Sidebar Header
+- 스크롤에 따라서 product-tab의 active-tab 이 업데이트 되고, 해당 탭을 클릭하면 그 위치로 이동하는 스크롤 이벤트를 구현하는 과정에서 여러 이슈들과 버그가 생겨서 구현하는게 힘들었지만 그 과정에서 여러 다양한 이슈들을 핸들링 하는 법을 배웠습니다.
+  <br/>
+  또한 퍼포먼스 개선을 위하여 비용이 큰 이벤트요소에 외부라이브러리인 lodash.js 의 \_.throttle() 함수를 사용하여 퍼포먼스를 개선시켰습니다.
 
-- 로그인을 하지 않은 경우
+```js
+const productTab = document.querySelector('.product-tab')
+const productTabButtonList = productTab.querySelectorAll(
+  '.product-tab-item button'
+)
 
-```html
-<div class="sidebar-auth">
-  <a class="btn-outlined btn-40" href="#">로그인</a>
-  <a class="btn-primary btn-40" href="#">회원가입</a>
-</div>
-```
+const TOP_HEADER_DESKTOP = 80 + 50 + 54
+const TOP_HEADER_MOBILE = 50 + 40 + 40
 
-- 로그인을 한 경우
+let currentActiveTab = productTab.querySelector('.is-active')
+let disableUpdating = false
 
-```html
-<div class="sidebar-user">
-  <a href="#">
-    <div class="avatar-24">
-      <img src="./assets/images/img-user-04.png" alt="" />
-    </div>
-    <strong class="username">이창환</strong>
-  </a>
-</div>
-```
+function toggleActiveTab() {
+  const TabItem = this.parentNode
 
-### 3. Product-Review
+  if (currentActiveTab !== TabItem) {
+    disableUpdating = true
+    TabItem.classList.add('is-active')
+    currentActiveTab.classList.remove('is-active')
+    currentActiveTab = TabItem
 
-- 리뷰가 0개일 경우
+    setTimeout(() => {
+      disableUpdating = false
+    }, 300)
+  }
+}
 
-```html
-<section
-  class="product-section product-review"
-  role="tabpanel"
-  id="product-review"
->
-  <header class="product-section-header">
-    <h1 class="title">리뷰</h1>
-    <strong class="badge" aria-label="0개의 리뷰">0</strong>
-    <a class="text-button" href="#">리뷰쓰기</a>
-  </header>
+function scrollToTabPanel() {
+  const tabPanelId = this.parentNode.getAttribute('aria-labelledby')
+  const tabPanel = document.getElementById(`${tabPanelId}`)
 
-  <div class="product-section-content">
-    <p class="review-empty">
-      첫 리뷰를 남겨주세요!<br />
-      최대 <strong>500P</strong>를 드립니다.
-    </p>
-  </div>
-</section>
-<div class="product-section-divider sm-only" aria-hidden></div>
-```
+  const scrollAmount =
+    tabPanel.getBoundingClientRect().top -
+    (window.innerWidth >= 768 ? TOP_HEADER_DESKTOP : TOP_HEADER_MOBILE)
 
-### 4. Product-Inquiry
+  window.scrollBy({
+    top: scrollAmount,
+    behavior: 'smooth',
+  })
+}
 
-- 문의가 0개일 경우
+productTabButtonList.forEach((button) => {
+  button.addEventListener('click', toggleActiveTab)
+  button.addEventListener('click', scrollToTabPanel)
+})
 
-```html
-<section
-  class="product-section product-inquiry is-open"
-  role="tabpanel"
-  id="product-inquiry"
->
-  <header class="product-section-header">
-    <h1 class="title">문의</h1>
-    <strong class="badge" aria-label="0개의 문의">0</strong>
-    <a class="text-button" href="#">문의하기</a>
-    <button class="icon-button sm-only" type="button" aria-label="더보기">
-      <i class="ic-chevron" aria-hidden></i>
-    </button>
-  </header>
+const tabPanelIdList = [
+  'product-spec',
+  'product-review',
+  'product-inquiry',
+  'product-shipment',
+  'product-recommendation',
+]
 
-  <div class="product-section-content">
-    <p class="inquiry-empty">문의 내역이 없습니다.</p>
-  </div>
-</section>
-<div class="product-section-divider sm-only" aria-hidden></div>
+const productTabPanelList = tabPanelIdList.map((panelId) => {
+  const tabPanel = document.getElementById(`${panelId}`)
+  return tabPanel
+})
+
+const productTabPanelPositionMap = {}
+
+function detectTapPanelPosition() {
+  productTabPanelList.forEach((panel) => {
+    const id = panel.getAttribute('id')
+    const position = window.scrollY + panel.getBoundingClientRect().top
+    productTabPanelPositionMap[id] = position
+  })
+  updateActiveTab()
+}
+
+function updateActiveTab() {
+  if (disableUpdating) {
+    return
+  }
+
+  const scrolledAmount =
+    window.scrollY +
+    (window.innerWidth >= 768 ? TOP_HEADER_DESKTOP + 80 : TOP_HEADER_MOBILE + 8)
+
+  let newActiveTab
+  if (scrolledAmount >= productTabPanelPositionMap['product-recommendation']) {
+    newActiveTab = productTabButtonList[4] // 추천버튼
+  } else if (scrolledAmount >= productTabPanelPositionMap['product-shipment']) {
+    newActiveTab = productTabButtonList[3] // 배송/환불버튼
+  } else if (scrolledAmount >= productTabPanelPositionMap['product-inquiry']) {
+    newActiveTab = productTabButtonList[2] // 문의버튼
+  } else if (scrolledAmount >= productTabPanelPositionMap['product-review']) {
+    newActiveTab = productTabButtonList[1] // 리뷰버튼
+  } else {
+    newActiveTab = productTabButtonList[0] // 상품정보버튼
+  }
+
+  const bodyHeight =
+    document.body.offsetHeight + (window.innerWidth < 1200 ? 56 : 0)
+  if (window.scrollY + window.innerHeight === bodyHeight) {
+    newActiveTab = productTabButtonList[4]
+  }
+
+  if (newActiveTab) {
+    newActiveTab = newActiveTab.parentNode
+
+    if (newActiveTab !== currentActiveTab) {
+      newActiveTab.classList.add('is-active')
+
+      if (currentActiveTab !== null) {
+        currentActiveTab.classList.remove('is-active')
+      }
+      currentActiveTab = newActiveTab
+    }
+  }
+}
+
+window.addEventListener('load', detectTapPanelPosition)
+window.addEventListener('resize', _.throttle(detectTapPanelPosition, 1000))
+window.addEventListener('scroll', _.throttle(updateActiveTab, 300))
 ```
