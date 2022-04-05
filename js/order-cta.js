@@ -8,33 +8,57 @@ const cartModal = document.querySelector('.cart-modal')
 const cartModalButton = orderFormModal.querySelector(
   '.button-group .btn-secondary'
 )
+const cartButtonOrderForm = document.querySelector(
+  '.order-form .button-group .btn-outlined'
+)
+const cartButtonFloatingOrderForm = document.querySelector(
+  '.floating-order-form .button-group .btn-outlined'
+)
+const cartModalOverlay = document.querySelector('.overlay')
+
 const cartModalCloseButton = cartModal.querySelector(
   '.button-group .btn-secondary'
 )
 
-const openOrderFormModal = () => {
-  orderFormModal.classList.add('is-open')
-  orderFormModalOverlay.classList.add('is-active')
-}
-orderCtaBuyButton.addEventListener('click', openOrderFormModal)
-
-const closeOrderFormModal = () => {
-  orderFormModal.classList.remove('is-open')
-  orderFormModalOverlay.classList.remove('is-active')
-}
-orderFormModalOverlay.addEventListener('click', closeOrderFormModal)
-
 const openCartModal = () => {
   cartModal.classList.add('is-active')
 }
-cartModalButton.addEventListener('click', openCartModal)
 
 const closeCartModal = () => {
   cartModal.classList.remove('is-active')
   orderFormModal.classList.remove('is-open')
   orderFormModalOverlay.classList.remove('is-active')
 }
-cartModalCloseButton.addEventListener('click', closeCartModal)
+
+const openCartModalOrderForm = () => {
+  cartModal.classList.add('is-active')
+  cartModalOverlay.classList.add('is-active')
+}
+
+const closeCartModalOrderForm = () => {
+  cartModal.classList.remove('is-active')
+  cartModalOverlay.classList.remove('is-active')
+}
+
+const openCartModalFloatingOrderForm = () => {
+  cartModal.classList.add('is-active')
+  cartModalOverlay.classList.add('is-active')
+}
+
+const closeCartModalFloatingOrderForm = () => {
+  cartModal.classList.remove('is-active')
+  cartModalOverlay.classList.remove('is-active')
+}
+
+const openOrderFormModal = () => {
+  orderFormModal.classList.add('is-open')
+  orderFormModalOverlay.classList.add('is-active')
+}
+
+const closeOrderFormModal = () => {
+  orderFormModal.classList.remove('is-open')
+  orderFormModalOverlay.classList.remove('is-active')
+}
 
 function toggleOrderCtaBookmark() {
   const [icon, countSpan] = this.children
@@ -55,3 +79,14 @@ function toggleOrderCtaBookmark() {
 }
 
 orderCtaBookmarkButton.addEventListener('click', toggleOrderCtaBookmark)
+orderFormModalOverlay.addEventListener('click', closeOrderFormModal)
+orderCtaBuyButton.addEventListener('click', openOrderFormModal)
+cartModalOverlay.addEventListener('click', closeCartModalOrderForm)
+cartModalOverlay.addEventListener('click', closeCartModalFloatingOrderForm)
+cartButtonFloatingOrderForm.addEventListener(
+  'click',
+  openCartModalFloatingOrderForm
+)
+cartButtonOrderForm.addEventListener('click', openCartModalOrderForm)
+cartModalCloseButton.addEventListener('click', closeCartModal)
+cartModalButton.addEventListener('click', openCartModal)
