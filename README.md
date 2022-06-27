@@ -1,5 +1,6 @@
 # 내일의 집
 
+김버그의 UI 개발 부트캠프 강의 실습프로젝트입니다.
 - 결과물 주소 👉 https://lechhw.github.io/tomorrow-house
 
 ## 사용 기술
